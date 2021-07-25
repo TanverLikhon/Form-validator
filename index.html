@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Form validator</title>
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <form class="form" id="form">
+            <h2>Register with us</h2>
+            <div class="form-control">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder=" Enter username">
+                <small id="erroruser"><br></small>
+            </div>
+            <div class="form-control">
+                <label for="email">Email address</label>
+                <input type="text" id="email" placeholder=" Enter email">
+                <small id="erroremail"><br></small>
+            </div>
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder=" Enter password">
+                <small id="errorpass"><br></small>
+            </div>
+            <div class="form-control">
+                <label for="password2">Confirm Password</label>
+                <input type="password" id="password2" placeholder=" Enter password again">
+                <small id="errorpass2"><br></small>
+            </div>
+
+            <div>
+                <p id="result"></p>
+            </div>
+
+            <button type="submit" id="submit">Submit</button>
+            <script>
+                // var username = document.getElementById('username').value;
+
+                document.getElementById("submit").addEventListener("click", function(e) {
+
+                    e.preventDefault();
+                    var username = username = document.getElementById('username').value;
+                    var email = document.getElementById('email').value;
+                    var password = document.getElementById('password').value;
+                    var password2 = document.getElementById('password2').value;
+
+                    var user, pass1, pass2, email1;
+
+                    ///username validation
+
+                    if (username === "") {
+                        user = "Username can't be empty !";
+
+                    } else if (username.length <= 6) {
+                        user = "Username must have six characters !";
+                    }
+                    else{
+                        user="Valid user name"
+                    }
+                    document.getElementById("erroruser").innerHTML = user;
+
+
+                    //email validation 
+
+                    var track = true,
+                        atfound = false,
+                        atidx;
+
+                    var i = 0;
+
+                    for (i = 0; i < email.length; i++) {
+                        if (email[i] == '@') atfound = true, idx = i;
+                        if (atfound == true && i == 0) {
+                            track = false;
+                            break;
+                        }
+                        if (atfound == true && email[i] == '.' && i - idx <= 1) {
+                            track = false;
+                            break;
+                        }
+                    }
+
+
+                    if (track == false) {
+                        document.getElementById("erroremail").innerHTML = "invalid email";
+                    } else {
+                        document.getElementById("erroremail").innerHTML = "email criteria matched";
+                    }
+
+                    console.log(track);
+                    
+                    
+                    ////passoword
+                    
+                    if(pass1.length<=6){
+                        
+                    }
+
+
+
+                });
+            </script>
+
+        </form>
+    </div>
+
+
+
+
+
+</body></html>
